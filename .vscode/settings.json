@@ -1,0 +1,8 @@
+{
+    "chat.extensionUnification.enabled": true,
+    "code-runner.runInTerminal": true,
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.showExecutionMessage": true,
+    "code-runner.clearPreviousOutput": true,
+    "editor.codeLens": true
+}

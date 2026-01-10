@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="Schedule.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="mobile-frame">
+    <div id="schedule-page">
+        <div class="schedule-header">
+            <div class="filter-row">
+                <div class="filter-buttons">
+                    <button class="filter-btn active">Today</button>
+                    <button class="filter-btn">Tomorrow</button>
+                    <button class="filter-btn">All</button>
+                </div>
+                <div class="add-btn" id="openModal">+</div>
+            </div>
+            
+            <div class="date-display">
+                <div class="date-left">
+                    <p class="day-name">Friday</p>
+                    <h1 class="day-num">12 NOV</h1>
+                </div>
+                <div class="date-right">
+                    <div class="timezone">
+                        <strong>5:00 AM</strong>
+                        <span>Phnom Penh</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-container">
+            <p class="task-label">Today's Tasks</p>
+            
+            <div class="task-card grey">
+                <div class="task-info"><strong>Physics HW</strong><span>Set: 10:00 PM</span></div>
+                <div class="task-time">2:00 PM</div>
+            </div>
+
+            <div class="task-card purple">
+                <div class="task-info"><strong>Evening Walk</strong><span>Set: 10:03 PM</span></div>
+                <div class="task-time">6:00 PM</div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <a href="home.html" class="nav-item">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </a>
+        <a href="Schedule.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </a>
+        <a href="chalender.html" class="nav-item">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+    </nav>
+
+    <div id="taskModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>New Task</h3>
+            <input type="text" id="taskName" placeholder="Task Name">
+            <input type="time" id="taskTime">
+            <select id="taskColor">
+                <option value="grey">Grey</option>
+                <option value="purple">Purple</option>
+                <option value="pink">Pink</option>
+                <option value="tan">Tan</option>
+            </select>
+            <div class="modal-buttons">
+                <button id="cancelBtn">Cancel</button>
+                <button id="saveBtn">Save Task</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="Schedule.js"></script>
+</body>
+</html>

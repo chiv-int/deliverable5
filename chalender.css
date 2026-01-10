@@ -1,0 +1,128 @@
+:root {
+    --primary: #3F635B;
+    --bg-green: #8CA483;
+    --card-cream: #fdf7e1;
+    --text-dark: #2A2A2A;
+}
+
+* { box-sizing: border-box; }
+body { 
+    background-color: #1a1a1a; 
+    font-family: 'Inter', sans-serif; 
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; margin: 0;
+}
+
+.hidden { display: none !important; }
+
+.mobile-frame {
+    width: 414px;
+    height: 850px;
+    background-color: var(--bg-green);
+    border: 12px solid #333;
+    border-radius: 45px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#calendar-page {
+    background-color: #f5f5f5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-header { background-color: var(--bg-green); padding: 40px 25px 20px; }
+.top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+
+.filter-btn { 
+    background: rgba(255,255,255,0.4); border: none; padding: 8px 18px; 
+    border-radius: 20px; font-weight: 600; cursor: pointer; transition: 0.3s; 
+}
+.filter-btn.active { background: var(--primary); color: white; }
+
+.add-btn { 
+    background: #F2E3A0; width: 44px; height: 44px; border-radius: 50%; 
+    display: flex; justify-content: center; align-items: center; 
+    font-size: 24px; cursor: pointer; 
+}
+
+.calendar-card { background: rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 25px; }
+.month-title { font-size: 16px; letter-spacing: 2px; margin-bottom: 10px; text-align: center; }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 13px; }
+.day-label { font-weight: 700; opacity: 0.6; }
+.calendar-grid span:not(.day-label):not(.empty) { 
+    height: 32px; display: flex; align-items: center; justify-content: center; 
+    cursor: pointer; border-radius: 8px; transition: 0.2s; 
+}
+.calendar-grid .today { background: var(--primary); color: white; font-weight: bold; }
+
+/* BUBBLE TASK STYLING (MATCHES SCHEDULE PAGE) */
+.task-container { background: #f5f5f5; flex: 1; padding: 25px; overflow-y: auto; padding-bottom: 100px; }
+.task-label { font-weight: 700; font-size: 18px; margin-bottom: 20px; }
+
+/* Update these specific parts in your chalender.css */
+
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px; /* Matches your Schedule.css exactly */
+    border-radius: 24px; /* Matches your Schedule.css exactly */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.task-info strong { 
+    display: block; 
+    font-size: 17px; /* Matches your Schedule.css */
+    margin-bottom: 4px; 
+    color: var(--text-dark);
+}
+
+.task-info span { 
+    font-size: 12px; /* Matches your Schedule.css */
+    opacity: 0.7; 
+}
+
+.task-time { 
+    font-size: 16px; /* Matches your Schedule.css */
+    font-weight: 700; 
+    color: var(--text-dark);
+}
+
+/* Ensure colors are identical */
+.grey { background: #E0E0E0; }
+.purple { background: #D6D1F5; }
+.pink { background: #F5D1E6; }
+.tan { background: #F5E6D1; }
+
+/* Completed state */
+.task-card[style*="opacity: 0.4"] {
+    filter: grayscale(0.5);
+}
+.grey { background: #E2E2E2; }
+.purple { background: #D6D1F5; }
+.pink { background: #F5D1E6; }
+.tan { background: #F5E6D1; }
+
+/* NAVBAR FIXED */
+.navbar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 85px; background: var(--primary); 
+    display: flex; justify-content: space-around; align-items: center; 
+    padding-bottom: 10px; z-index: 10;
+}
+.nav-item { color: white; opacity: 0.4; text-decoration: none; transition: 0.3s; display: flex; }
+.nav-item.active { opacity: 1; transform: translateY(-3px); }
+
+/* MODAL */
+.modal { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 100; }
+.modal-content { background: var(--card-cream); padding: 30px; border-radius: 30px; width: 85%; display: flex; flex-direction: column; gap: 15px; }
+#saveBtn { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+#cancelBtn { background: transparent; border: none; color: #666; cursor: pointer; }
