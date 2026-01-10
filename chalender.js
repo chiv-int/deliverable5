@@ -9,13 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedDate = "11"; 
     let selectedMonth = "Nov";
-    // Using a specific key for calendar tasks to keep them separate from the daily schedule
     let allCalendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
 
-    // Core Rendering Function (Matches your Schedule style)
-// Replace your existing renderTasks function with this one
 const renderTasks = () => {
-    // Matches the label style from your schedule page
+   
     tasksList.innerHTML = `<p class="task-label">${selectedMonth} ${selectedDate} Tasks</p>`;
 
     const filtered = allCalendarTasks.filter(t => t.day === selectedDate && t.month === selectedMonth);
@@ -30,12 +27,12 @@ const renderTasks = () => {
 
     filtered.forEach(task => {
         const card = document.createElement('div');
-        // Applying the EXACT class logic from your schedule page
+
         card.className = `task-card ${task.color}`;
         
         if(task.completed) card.style.opacity = '0.4';
 
-        // HTML structure matches your schedule page perfectly
+
         card.innerHTML = `
             <div class="task-info">
                 <strong>${task.name}</strong>
@@ -44,13 +41,12 @@ const renderTasks = () => {
             <div class="task-time">${task.time}</div>
         `;
 
-        // Click to complete
+    
         card.addEventListener('click', () => {
             task.completed = !task.completed;
             saveAndRender();
         });
 
-        // Double click to delete
         card.addEventListener('dblclick', () => {
             if(confirm("Delete this task?")) {
                 allCalendarTasks = allCalendarTasks.filter(t => t.id !== task.id);
@@ -67,11 +63,11 @@ const renderTasks = () => {
         renderTasks();
     };
 
-    // Modal Controls
+    
     openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
     cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
-    // Save Logic (Matches Schedule format)
+   
     saveBtn.addEventListener('click', () => {
         const nameInput = document.getElementById('taskName');
         const timeInput = document.getElementById('taskTime');
@@ -99,7 +95,7 @@ const renderTasks = () => {
         }
     });
 
-    // Calendar Date Selection
+    
     days.forEach(day => {
         day.addEventListener('click', () => {
             days.forEach(d => d.classList.remove('today'));
@@ -109,7 +105,7 @@ const renderTasks = () => {
         });
     });
 
-    // Month Filtering
+   
     monthBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             monthBtns.forEach(b => b.classList.remove('active'));

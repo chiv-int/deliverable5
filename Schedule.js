@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskContainer = document.querySelector('.task-container');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // 1. Initialize App Data
+    
     let tasks = JSON.parse(localStorage.getItem('steadyTasks')) || [];
     let currentFilter = 'Today';
 
-    // Update the Header with Real Date/Time
+    
     const updateHeader = () => {
         const now = new Date();
         document.querySelector('.day-name').innerText = now.toLocaleDateString('en-US', { weekday: 'long' });
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.timezone strong').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     };
     updateHeader();
-    setInterval(updateHeader, 60000); // Update clock every minute
+    setInterval(updateHeader, 60000); 
 
     // 2. Core Rendering Function
     const renderTasks = () => {
-        // Keep your label at the top
+        
         taskContainer.innerHTML = `<p class="task-label">${currentFilter}'s Tasks</p>`;
 
         const filtered = tasks.filter(task => {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filtered.forEach((task, index) => {
             const card = document.createElement('div');
-            // Using your exact CSS classes
+           
             card.className = `task-card ${task.color} ${task.completed ? 'completed-opacity' : ''}`;
             card.style.cursor = 'pointer';
             card.style.transition = '0.3s';
@@ -46,13 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="task-time">${task.time}</div>
             `;
 
-            // Function: Toggle Complete
+    
             card.addEventListener('click', () => {
                 task.completed = !task.completed;
                 saveAndRender();
             });
 
-            // Function: Delete (Double Click)
             card.addEventListener('dblclick', () => {
                 if(confirm("Delete this task?")) {
                     tasks = tasks.filter(t => t.id !== task.id);
@@ -69,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTasks();
     };
 
-    // 3. Modal Logic
     addBtn.addEventListener('click', () => modal.classList.remove('hidden'));
     cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
@@ -92,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.push(newTask);
             saveAndRender();
 
-            // Reset
+           
             nameInput.value = "";
             modal.classList.add('hidden');
         } else {
@@ -100,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Filter Functionality
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -110,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial load
     renderTasks();
 });
 

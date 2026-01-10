@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Update Stats from LocalStorage
     const updateStats = () => {
         const tasks = JSON.parse(localStorage.getItem('myTasks')) || [];
         const pendingCount = document.getElementById('pendingCount');
@@ -10,10 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateStats();
 
-    // 2. Setup Chart
     const ctx = document.getElementById('statsChart').getContext('2d');
     
-    // Create a gradient for the line chart
+
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, 'rgba(168, 87, 67, 0.4)');
     gradient.addColorStop(1, 'rgba(168, 87, 67, 0)');
