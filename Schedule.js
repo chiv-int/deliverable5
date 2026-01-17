@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     
-    let tasks = JSON.parse(localStorage.getItem('steadyTasks')) || [];
+    let tasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
     let currentFilter = 'Today';
 
     
@@ -64,17 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const saveAndRender = () => {
-        localStorage.setItem('steadyTasks', JSON.stringify(tasks));
+        localStorage.setItem('calendarTasks', JSON.stringify(tasks));
         renderTasks();
     };
-
     addBtn.addEventListener('click', () => modal.classList.remove('hidden'));
     cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
-    saveBtn.addEventListener('click', () => {
+saveBtn.addEventListener('click', () => {
         const nameInput = document.getElementById('taskName');
         const timeInput = document.getElementById('taskTime');
         const colorInput = document.getElementById('taskColor');
+        const now = new Date();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         if (nameInput.value && timeInput.value) {
             const newTask = {
@@ -82,15 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: nameInput.value,
                 time: formatAMPM(timeInput.value),
                 color: colorInput.value,
-                category: currentFilter === 'All' ? 'Today' : currentFilter, // Assign to current view
+                // These are the "labels" the calendar uses to find this task
+                day: String(now.getDate()), 
+                month: months[now.getMonth()], 
                 dateSet: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                completed: false
+                completed: false,
+                category: currentFilter === 'All' ? 'Today' : currentFilter
             };
 
             tasks.push(newTask);
             saveAndRender();
-
-           
+            
             nameInput.value = "";
             modal.classList.add('hidden');
         } else {

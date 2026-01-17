@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('taskModal');
     const openBtn = document.getElementById('openModal');
@@ -7,15 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthBtns = document.querySelectorAll('.month-filters .filter-btn');
     const days = document.querySelectorAll('.calendar-grid span:not(.day-label):not(.empty)');
 
-    let selectedDate = "11"; 
-    let selectedMonth = "Nov";
+    const now = new Date();
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    let selectedDate = String(now.getDate()); 
+    let selectedMonth = months[now.getMonth()];
     let allCalendarTasks = JSON.parse(localStorage.getItem('calendarTasks')) || [];
-
-const renderTasks = () => {
-   
-    tasksList.innerHTML = `<p class="task-label">${selectedMonth} ${selectedDate} Tasks</p>`;
-
-    const filtered = allCalendarTasks.filter(t => t.day === selectedDate && t.month === selectedMonth);
+    
+    const renderTasks = () => {
+        tasksList.innerHTML = `<p class="task-label">${selectedMonth} ${selectedDate} Tasks</p>`;
+        const filtered = allCalendarTasks.filter(t => t.day === selectedDate && t.month === selectedMonth);
 
     if (filtered.length === 0) {
         const emptyMsg = document.createElement('p');
